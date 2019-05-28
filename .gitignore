@@ -1,1 +1,2 @@
 .envrc
+spec/fixtures/vcr_cassettes

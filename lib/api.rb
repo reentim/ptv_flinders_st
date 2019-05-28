@@ -1,12 +1,21 @@
 # frozen_string_literal: true
 
+require 'net/http'
 require 'openssl'
 require 'uri'
+
+require_relative 'response'
 
 class Api
   def initialize(device_id, secret_key)
     @device_id = device_id
     @secret_key = secret_key
+  end
+
+  def get(path)
+    Response.new(
+      Net::HTTP.get(URI(url(path))),
+    )
   end
 
   def url(path)
