@@ -1,2 +1,4 @@
 .envrc
-spec/fixtures/vcr_cassettes
+public/disruptions.json
+public/flinders_st_departures.json
+public/route_map.json

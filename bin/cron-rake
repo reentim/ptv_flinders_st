@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+task="$1"
+
+source /usr/local/share/chruby/chruby.sh
+chruby ruby
+
+cd /root/proj
+bundle exec rake "$task"

@@ -2,6 +2,7 @@
 
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'minitest-vcr'
 require 'vcr'
 
 DEVICE_ID = ENV.fetch('PTV_API_DEVID')
@@ -18,3 +19,5 @@ VCR.configure do |config|
   config.default_cassette_options = { match_requests_on: [:path] }
   config.hook_into :webmock
 end
+
+MinitestVcr::Spec.configure!

@@ -1,0 +1,25 @@
+#cloud-config
+users:
+  - name: ubuntu
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKi3YxUtrT+prhYQKeNc6A2qwaKxX7WfUDzMHN5G7kmIHuosMUuFRSWUJzR2f4J8ou/NQAOEo2Xmc6P8gpzaNXKZwwFBv5vPEgk8AT+lh8X5eH6sVwOEy2coTkEVU4wLq75fT0LoGsLz8SVH537vIKcd8rXo7FstZN3uBmqJzSahsw4xDT4sn4GuzgFroiDCl+5exDlQZrIumk3Ns5ddBHE3F22XnsmMw+v/xBfyhPHgEinC5ppHqYvYlQTcWvEgojw9fHyegK3WdOeh56u8ToYwOUHAUBEB9hoZI7PphpsMVRond/2ngNheHXOW8kErXenAEG/O1go5bwy+PrS+HZ reentim@gmail.com
+
+locale: en_AU.UTF-8
+
+packages:
+  - make
+  - nginx
+  - direnv
+
+snap:
+  - commands:
+    - ['install', 'ruby', '--classic']
+
+runcmd:
+  - whoami >> /home/ubuntu/whoami.log
+  - gem install bundler
+  - git clone https://github.com/reentim/ptv_flinders_st.git
+  - cd /home/ubuntu/ptv_flinders_st && bundle install

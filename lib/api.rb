@@ -5,11 +5,20 @@ require 'openssl'
 require 'uri'
 
 require_relative 'response'
+require_relative 'endpoints'
 
 class Api
-  def initialize(device_id, secret_key)
-    @device_id = device_id
-    @secret_key = secret_key
+  include Endpoints
+
+  def initialize(device_id = nil, secret_key = nil)
+    @device_id = device_id || ENV.fetch('PTV_API_DEVID')
+    @secret_key = secret_key || ENV.fetch('PTV_API_SECRET')
+  end
+
+  def save(data, file_name)
+    File.open(file_name, 'w') do |file|
+      file << data
+    end
   end
 
   def get(path)
